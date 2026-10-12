@@ -1,0 +1,34 @@
+<div class="container">
+  <div class="card shadow mb-4">
+    <div class="card-body">
+     <table class="table table-striped">
+        <tr> <th>N°</th><th>Id</th><th>Titre</th> <th>Réalisateur</th> <th>Durée (min)</th> <th>Note</th>  <th>Date Sortie</th> <th>Catégorie</th></tr>
+         @for (movie of movies; track movie.idMovie; let index =$index; let nbr=$count; let first = $first; let last = $last)
+         {
+           @if(first)
+          {  <h1>Nombre : {{nbr}}</h1>}
+
+          <tbody >
+            <tr >
+               <td>{{index}}</td>
+               <td>{{movie.idMovie}}</td>
+               <td>{{movie.titreMovie}}</td>
+               <td>{{movie.realisateur}}</td>
+               <td>{{movie.dureeMin}}</td>
+               <td>{{movie.noteMovie}}</td>
+               <td>{{movie.dateSortie | date:'dd/MM/yyyy'}}</td>
+               <td>{{movie.categorie?.nomCategorie}}</td>
+               <td><a class="btn btn-danger" (click)="supprimerMovie(movie)">Supprimer</a></td>
+               <td><a class="btn btn-success" [routerLink]="['/updateMovie',movie.idMovie]">Modifier</a></td>
+             </tr>
+          </tbody>
+         }
+
+         @empty {
+          <h1>Aucun movie trouvé !</h1>
+         }
+
+    </table>
+    </div>
+  </div>
+</div>

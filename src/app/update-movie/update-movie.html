@@ -1,0 +1,47 @@
+<div class="container">
+    <div>
+      <h2>Modifier un Movie :</h2>
+    </div>
+         <form >
+             <div class="col-sm-2 col-md-2 col-lg-2">
+               <label >ID Movie</label>
+               <input readonly type="text" [(ngModel)]="currentMovie.idMovie"
+                   name="idMovie" class="form-control">
+              </div>
+
+             <div class="col-sm-4 col-md-4 col-lg-4" >
+               <label >Titre Movie</label>
+               <input type="text" [(ngModel)]="currentMovie.titreMovie"
+                   name="titreMovie" class="form-control">
+             </div>
+
+             <div class="col-sm-4 col-md-4 col-lg-4" >
+               <label >Réalisateur</label>
+               <input type="text" [(ngModel)]="currentMovie.realisateur"
+                   name="realisateur" class="form-control">
+             </div>
+
+             <div class="col-sm-2 col-md-2 col-lg-2">
+               <label >Durée (min)</label>
+               <input type="number" [(ngModel)]="currentMovie.dureeMin"
+                   name="dureeMin" class="form-control">
+             </div>
+
+             <div class="col-sm-2 col-md-2 col-lg-2">
+               <label >Note</label>
+               <input type="number" [(ngModel)]="currentMovie.noteMovie"
+                   name="noteMovie" class="form-control">
+             </div>
+
+             <div class="col-sm-4 col-md-4 col-lg-4">
+                 <label >Date de sortie</label>
+    <input type="date" [ngModel]="currentMovie.dateSortie | date: 'yyyy-MM-dd'"
+    (ngModelChange)="currentMovie.dateSortie = $event" name="dateSortie"
+    class="form-control">
+             </div>
+
+              <div class="mt-2">
+<button type="submit" (click)="updateMovie()" class="btn btn-success">Modifier</button>
+              </div>
+         </form>
+</div>
