@@ -1,4 +1,4 @@
-import { Categorie } from "./categorie.model";
+import { Genre } from "./genre.model";
 
 export class Movie {
     idMovie? : number;
@@ -7,5 +7,5 @@ export class Movie {
     dureeMin? : number;
     noteMovie? : number;
     dateSortie? : Date ;
-    categorie? : Categorie;
+    genre? : Genre;
 }

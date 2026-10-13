@@ -3,7 +3,6 @@ import { Component, OnInit } from '@angular/core';
 import { Movie } from '../model/movie.model';
 import { MovieService } from '../services/movie.service';
 import { RouterLink } from '@angular/router';
-import { Categorie } from '../model/categorie.model';
 
 @Component({
   selector: 'app-movies',

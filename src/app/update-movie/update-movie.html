@@ -40,6 +40,15 @@
     class="form-control">
              </div>
 
+             <div class="col-sm-4 col-md-4 col-lg-4">
+               <label>Genre</label>
+               <select [(ngModel)]="currentMovie.genre" name="genre" class="form-control">
+                 @for (genre of genres; track genre.idGenre) {
+                   <option [ngValue]="genre">{{genre.nomGenre}}</option>
+                 }
+               </select>
+             </div>
+
               <div class="mt-2">
 <button type="submit" (click)="updateMovie()" class="btn btn-success">Modifier</button>
               </div>

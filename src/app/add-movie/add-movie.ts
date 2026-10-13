@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Movie } from '../model/movie.model';
 import { MovieService } from '../services/movie.service';
-import { Categorie } from '../model/categorie.model';
+import { Genre } from '../model/genre.model';
 import { Router } from '@angular/router';
 
 @Component({
@@ -14,8 +14,8 @@ import { Router } from '@angular/router';
 export class AddMovie {
 
   newMovie = new Movie();
-  categories! : Categorie[];
-  newIdCat! : number;
+  genres! : Genre[];
+  newIdGenre! : number;
 
   message! : string;
 
@@ -25,12 +25,12 @@ export class AddMovie {
   ) {}
 
   ngOnInit(): void {
-    this.categories = this.movieService.listeCategories();
+    this.genres = this.movieService.listeGenres();
   }
 
   addMovie(){
 
-    this.newMovie.categorie = this.movieService.consulterCategorie(this.newIdCat);
+    this.newMovie.genre = this.movieService.consulterGenre(this.newIdGenre);
     this.movieService.ajouterMovie(this.newMovie);
     this.router.navigate(['movies']);
   }

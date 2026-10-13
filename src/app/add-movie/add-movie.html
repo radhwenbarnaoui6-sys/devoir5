@@ -40,10 +40,10 @@
                      name="dateSortie" class="form-control">
              </div>
               <div class="col-sm-4 col-md-4 col-lg-4">
-                <label>Catégorie</label>
-                <select [(ngModel)]="newIdCat" name="idCat" class="form-control">
-                  @for (cat of categories; track cat.idCategorie) {
-                    <option [value]="cat.idCategorie">{{cat.nomCategorie}}</option>
+                <label>Genre</label>
+                <select [(ngModel)]="newIdGenre" name="idGenre" class="form-control">
+                  @for (genre of genres; track genre.idGenre) {
+                    <option [value]="genre.idGenre">{{genre.nomGenre}}</option>
                   }
                 </select>
               </div>

@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { MovieService } from '../services/movie.service';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { Genre } from '../model/genre.model';
 
 @Component({
   selector: 'app-update-movie',
@@ -13,6 +14,7 @@ import { CommonModule } from '@angular/common';
 })
 export class UpdateMovie implements OnInit {
   currentMovie = new Movie();
+  genres!: Genre[];
 
   constructor(private activatedRoute: ActivatedRoute,
               private router :Router,
@@ -21,6 +23,7 @@ export class UpdateMovie implements OnInit {
 
   ngOnInit() {
     this.currentMovie = this.movieService.consulterMovie(this.activatedRoute.snapshot.params['id']);
+    this.genres = this.movieService.listeGenres();
   }
 
   updateMovie()
