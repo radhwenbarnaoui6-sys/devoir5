@@ -1,0 +1,26 @@
+<div class="container py-4">
+  <h1 class="h3 mb-3">Recherche par genre</h1>
+  <div class="col-sm-6 col-md-4 mb-4">
+    <label for="genre" class="form-label">Genre</label>
+    <select id="genre" name="genre" class="form-select" [(ngModel)]="selectedGenreId" (change)="onChange()">
+      <option [ngValue]="null">Tous les genres</option>
+      @for (genre of genres; track genre.idGenre) {
+        <option [ngValue]="genre.idGenre">{{ genre.nomGenre }}</option>
+      }
+    </select>
+  </div>
+  <div class="card shadow mb-4">
+    <div class="card-body table-responsive">
+      <table class="table table-striped align-middle mb-0">
+        <thead><tr><th>Id</th><th>Titre</th><th>Réalisateur</th><th>Durée (min)</th><th>Note</th><th>Date de sortie</th><th>Genre</th></tr></thead>
+        <tbody>
+          @for (movie of movies; track movie.idMovie) {
+            <tr><td>{{ movie.idMovie }}</td><td>{{ movie.titreMovie }}</td><td>{{ movie.realisateur }}</td><td>{{ movie.dureeMin }}</td><td>{{ movie.noteMovie }}</td><td>{{ movie.dateSortie | date:'dd/MM/yyyy' }}</td><td>{{ movie.genre?.nomGenre ?? 'Sans genre' }}</td></tr>
+          } @empty {
+            <tr><td colspan="7" class="text-center">Aucun film trouvé pour ce genre.</td></tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

@@ -1,18 +1,22 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { Movie } from '../model/movie.model';
 import { Genre } from '../model/genre.model';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MovieService {
+  apiURL: string = 'http://localhost:8080/movies/api';
+  apiURLCat: string = 'http://localhost:8080/movies/api/cat';
   movies : Movie[]; //un tableau de Movie
   genres: Genre[];
 
 
   movie! : Movie;
 
-  constructor() {
+  constructor(private http: HttpClient) {
     this.genres = [
       {idGenre : 1, nomGenre : "Action"},
       {idGenre : 2, nomGenre : "Comédie"},
@@ -76,6 +80,20 @@ export class MovieService {
     consulterGenre(id:number): Genre{
       return this.genres.find(genre => genre.idGenre == id)!;
 
+    }
+    rechercherParCategorie(idCat: number):Observable< Movie[]> {
+      const url = `${this.apiURL}/prodscat/${idCat}`;
+      return this.http.get<Movie[]>(url);
+      
+    }
+
+    rechercherParGenre(idGenre: number): Movie[] {
+      return this.movies.filter(movie => movie.genre?.idGenre === Number(idGenre));
+    }
+
+    rechercherParNom(nom: string): Observable<Movie[]> {
+      const url = `${this.apiURL}/moviesByName/${encodeURIComponent(nom)}`;
+      return this.http.get<Movie[]>(url);
     }
 
 }
